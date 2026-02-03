@@ -10,5 +10,5 @@ class MSE(Base):
 
     def gradient(self, true_label, pred_label):
         n = true_label.shape[0]
-        return -2 / n * (true_label - pred_label)
+        return (2 / n) * (pred_label - true_label)
     

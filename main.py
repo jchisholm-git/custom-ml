@@ -12,17 +12,15 @@ from utils.data_helpers import flatten_features
 
 
 def test_linear_regression_boston():
-    print("\n=== Linear Regression | Boston Housing ===")
+    print("Linear Regression || Boston Housing")
+    scaler = StandardScaler()
 
     (X_train, y_train), (X_test, y_test) = boston_housing.load_data()
-
-    scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
     model = LinearRegression(loss_fn=MSE(), alpha=0.01)
     model.fit(X_train, y_train, epochs=500, batch_size=32)
-
     mse = model.evaluate(X_test, y_test)
 
     print(f"MSE on test set: {mse:.4f}")
@@ -30,24 +28,21 @@ def test_linear_regression_boston():
 
 
 def test_knn_mnist():
-    print("\n=== KNN | MNIST (subset) ===")
+    print("\nKNN || MNIST (subset)")
 
     (X_train, y_train), (X_test, y_test) = mnist.load_data()
-
     X_train = flatten_features(X_train)
     X_test = flatten_features(X_test)
 
     X_train, _, y_train, _ = train_test_split(
-        X_train, y_train, train_size=3000, stratify=y_train, random_state=42
+        X_train, y_train, stratify=y_train, random_state=42
     )
-
     scaler = MinMaxScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
     knn = KNN(k=5, d="euclidean")
     knn.fit(X_train, y_train)
-
     accuracy = knn.evaluate(X_test, y_test)
 
     print(f"KNN accuracy: {accuracy:.2f}%")
@@ -55,10 +50,9 @@ def test_knn_mnist():
 
 
 def test_pca_knn_pipeline():
-    print("\nPCA + KNN | MNIST")
+    print("\nPCA + KNN || MNIST")
 
     (X_train, y_train), _ = mnist.load_data()
-
     X_train = flatten_features(X_train[:2000])
     y_train = y_train[:2000]
 
@@ -71,13 +65,11 @@ def test_pca_knn_pipeline():
     X_tr, X_te, y_tr, y_te = train_test_split(
         X_reduced, y_train, test_size=0.2, random_state=42
     )
-
     knn = KNN(k=3)
     knn.fit(X_tr, y_tr)
-
     accuracy = knn.evaluate(X_te, y_te)
-    print(f"PCA + KNN accuracy: {accuracy:.2f}%")
 
+    print(f"PCA + KNN accuracy: {accuracy:.2f}%")
     assert accuracy > 75
 
 

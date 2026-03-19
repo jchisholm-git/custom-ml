@@ -23,7 +23,7 @@ print(f"MSE on test set: {mse:.4f}")
 
 ### Linear Regression and MSE Loss
 * Implemented vectorized Mini-Batch Gradient Descent ($\hat{y} = Xw + b$) with adjustable parameters for epochs, batch size, and learning rate.
-* Utilized matrix-based partial derivatives for weight updates, avoiding iterative summation loops for O(n) performance gains.
+* Utilized matrix-based partial derivatives for weight updates, avoiding iterative summation loops.
 * Validated accuracy against Scikit-Learn's LinearRegression implementation, achieving <0.001% variance in predicted weights.
 
 ### KNN (K-Nearest-Neighbors)
@@ -32,7 +32,7 @@ print(f"MSE on test set: {mse:.4f}")
 * Achieved 96.67% accuracy (k=5, Euclidean distance) on MNIST handwritten digit dataset (preprocessed by MinMax scaler), comparable to industry-standard libraries (Scikit-Learn baseline ~97%).
 
 ### PCA (Principle Component Analysis)
-* Supports both exact Full SVD (Singular Vector Decomposition) and Randomized Truncated SVD for flexible compute-accuracy trade-offs.
+* Supports both exact Full SVD (Singular Value Decomposition) and Randomized Truncated SVD for flexible compute-accuracy trade-offs.
 * Implemented cumulative explained variance logic, allowing for dimensionality selection based on the desired information retention threshold
 * Supports data reconstruction applying the reduced dimensionality, enabling visualization of feature retention
 * Mathematical foundation: 

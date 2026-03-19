@@ -32,7 +32,7 @@ class LinearRegression(Base):
             ))
         })
         bias, weights = 0.0, np.zeros(train_data.shape[1])
-        for e in range(epochs):
+        for _ in range(epochs):
             indices = np.random.permutation(train_data.shape[0])
             data_shuffled, labels_shuffled = train_data[indices], train_labels[indices]
 

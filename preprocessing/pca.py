@@ -33,9 +33,8 @@ class PCA:
         else:
             raise ValueError("n_components must be an int, a float between 0.0 and 1.0, or None")
 
-        principal_components = Vh.T[:, :k]
-        self.principal_components = principal_components
-        return principal_components
+        self.principal_components = Vh[:k, :]
+        return self.principal_components
 
 
     def randomized(self, data_matrix):
@@ -95,5 +94,5 @@ class PCA:
                 partial(DV.contains_n_columns, n=self.principal_components.shape[1])
             ))
         })
-        reconstructed_data = score_vector @ self.principal_components.T
+        reconstructed_data = score_vector @ self.principal_components
         return reconstructed_data

@@ -53,10 +53,10 @@ def test_pca_knn_pipeline():
     print("\nPCA + KNN || MNIST")
 
     (X_train, y_train), _ = mnist.load_data()
-    X_train = flatten_features(X_train[:2000])
-    y_train = y_train[:2000]
+    X_train = flatten_features(X_train)
+    y_train = y_train
 
-    scaler = StandardScaler()
+    scaler = StandardScaler(use_std=False)
     X_train = scaler.fit_transform(X_train)
 
     pca = PCA(n_components=0.95)
